@@ -1,24 +1,39 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿.container--primary {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 50% 10% 40%;
+    background-color: slategrey;
+    color: white;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+.container__led {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
+.textbox__led {
+    color: black;
+    height: 200px;
+    width: 70%;
+    border-radius: 3px;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+.container--button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container--string-output {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.textbox__string {
+    width: 40%;
+    border-radius: 3px;
 }
