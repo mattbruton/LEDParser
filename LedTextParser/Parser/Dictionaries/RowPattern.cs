@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 
 namespace LedTextParser.Parser.Dictionaries
 {
-    public class Binary
+    public class RowPattern
     {
+        // Primarily created to show how the lists were generated for the dictionary of
+        // Letters/List of chars. This dictionary doesn't get used in the code, but if I had to
+        // generate a working version of the LED display, this could be useful.
+
         public Dictionary<char, List<int>> Dict = new Dictionary<char, List<int>>
         {
             {'a', new List<int> {0,0,0,0,0}},

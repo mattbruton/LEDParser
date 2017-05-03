@@ -1,33 +1,36 @@
-﻿using System;
+﻿using LedTextParser.Parser.Dictionaries;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace LedTextParser.Parser
 {
     public class RepValidator
-    {
-        public bool ValidateRep(string rep)
+    {   
+        public string ValidateRep(string rep)
         {
-            if (CheckLength(rep))
-            {
-                return false;
-            }
-            return true;
+            return ValidateLength(rep) && ValidatePattern(rep) ? rep : null;
         }
 
-        private bool CheckLength(string rep)
+        private bool ValidateLength(string rep)
         {
-            if (rep.Length % 7 != 0 && rep.Length >= 700)
-            {
-                return false;
-            }
-            return true;
+            return rep.Length % 6 == 0 && rep.Length <= 600;
         }
 
-        public bool CheckLetterListForValidKey(string rep)
+        public bool ValidatePattern(string rep)
         {
-            return true;
+            Dictionary<string, string> dictionary = new LettersPattern().ProvideDictionary();
+            List<string> repPatterns = rep.Split('1').ToList();
+            repPatterns.Remove(repPatterns.Last());
+            int patternCount = 0;
+
+            foreach (var pattern in repPatterns)
+            {
+                if (dictionary.ContainsValue(pattern))
+                {
+                    patternCount++;
+                }
+            }
+            return patternCount == repPatterns.Count;
         }
     }
 }
