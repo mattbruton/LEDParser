@@ -1,16 +1,45 @@
 ﻿@{
     ViewBag.Title = "LED Text Parser";
 }
+
 <div class="container--primary">
     <div class="container__led">
         <label for="led-input">Enter LED string here:</label>
-        <textarea name="led-input" class="textbox__led" autofocus type="text"></textarea>
+        <textarea id="led-input" class="textbox__led" autofocus type="text"></textarea>
     </div>
     <div class="container--button">
         <button class="btn btn-default">Convert to String</button>
     </div>
     <div class="container--string-output">
         <label for="string-output">String Output:</label>
-        <textarea name="string-output" disabled class="textbox__string" type="text"></textarea>
+        <textarea id="string-output" disabled class="textbox__string" type="text"></textarea>
     </div>
 </div>
+
+<script
+    src="https://code.jquery.com/jquery-1.12.4.min.js"
+    integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+    crossorigin="anonymous">
+</script>
+<script>
+    var input;
+
+    $(".textbox__led").keyup(() => {
+        input = $(".textbox__led").val();
+    });
+
+    $(".btn").click(() => {
+        $.ajax({
+                url: "../api/parse",
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(input)
+            })
+            .done((res) => {
+                $(".textbox__string").val(res);
+            })
+            .fail((err) => {
+                console.log(err);
+            });
+    });
+</script>

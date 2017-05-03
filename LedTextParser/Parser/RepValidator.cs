@@ -12,7 +12,7 @@ namespace LedTextParser.Parser
         }
 
         private bool ValidateLength(string rep)
-        {
+        {  
             return rep.Length % 6 == 0 && rep.Length <= 600;
         }
 
